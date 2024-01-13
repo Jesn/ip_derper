@@ -5,10 +5,10 @@ on:
   push:
     branches:
       - main
-  pull_request:
-    branches: [ main ]
-  pull_request_target:
-    types: [assigned, opened, synchronize, reopened]
+#  pull_request:
+#    branches: [ main ]
+#  pull_request_target:
+#    types: [assigned, opened, synchronize, reopened]
 
 jobs:
   deploy:
@@ -37,7 +37,7 @@ jobs:
           
 
       # Runs a single command using the runners shell
-      - name: Build and push Docker images to docker.io and ghcr.io
+      - name: Build and push Docker images to docker.io
         uses: docker/build-push-action@v2
         with:
           file: 'Dockerfile'
@@ -45,5 +45,4 @@ jobs:
           context: ./
           push: true
           tags: |
-            yangchuansheng/ip_derper:latest
-            ghcr.io/yangchuansheng/ip_derper:latest
+            richpeople/ip_derper:latest
