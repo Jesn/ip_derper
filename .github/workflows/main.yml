@@ -36,7 +36,8 @@ jobs:
           tags: richpeople/ip_derper:latest
       - name: Compress derper directory after building
         run: |
-          docker run -d --name derp ${{ steps.docker_build.outputs.digest }}
+          docker images
+          docker run -d --name derp ${{ steps.docker_build.outputs.tags }}
           docker cp derp:/app/derper ./output
           tar -czvf tailscale_derp_$(uname -m).tar.gz ./output
           docker rm -f derp
