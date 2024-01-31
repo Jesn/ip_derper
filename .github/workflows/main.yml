@@ -34,29 +34,29 @@ jobs:
           platforms: linux/amd64,linux/arm64
           push: true
           tags: richpeople/ip_derper:latest
-      - name: Compress derper directory after building
-        run: |
-          docker run -d --name derp docker:${{ steps.docker_build.outputs.tags }}
-          docker cp derp:/app/derper ./output
-          tar -czvf tailscale_derp_$(uname -m).tar.gz ./output
-          docker rm -f derp
-          rm -r ./output
-      - name: Create Release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.Developer_Token }}
-        with:
-          tag_name: ${{ github.run_number }}
-          release_name: Release ${{ github.run_number }}
-          draft: false
-          prerelease: false
-      - name: Upload Release Asset
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.Developer_Token }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./tailscale_derp_$(uname -m).tar.gz
-          asset_name: tailscale_derp_$(uname -m).tar.gz
-          asset_content_type: application/gzip
+      # - name: Compress derper directory after building
+      #   run: |
+      #     docker run -d --name derp richpeople/ip_derper:latest
+      #     docker cp derp:/app/derper ./output
+      #     tar -czvf tailscale_derp_$(uname -m).tar.gz ./output
+      #     docker rm -f derp
+      #     rm -r ./output
+      # - name: Create Release
+      #   id: create_release
+      #   uses: actions/create-release@v1
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.Developer_Token }}
+      #   with:
+      #     tag_name: ${{ github.run_number }}
+      #     release_name: Release ${{ github.run_number }}
+      #     draft: false
+      #     prerelease: false
+      # - name: Upload Release Asset
+      #   uses: actions/upload-release-asset@v1
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.Developer_Token }}
+      #   with:
+      #     upload_url: ${{ steps.create_release.outputs.upload_url }}
+      #     asset_path: ./tailscale_derp_$(uname -m).tar.gz
+      #     asset_name: tailscale_derp_$(uname -m).tar.gz
+      #     asset_content_type: application/gzip
