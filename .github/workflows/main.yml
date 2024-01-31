@@ -25,24 +25,31 @@ jobs:
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
-      - name: Build and push Docker images
-        id:  docker_build
-        uses: docker/build-push-action@v2
+      - name: Build and export to Docker
+        id:  docker_load
+        uses: docker/build-push-action@v5
         with:
           context: .
           file: ./Dockerfile
           platforms: linux/amd64,linux/arm64
           load: true
-          push: true
           tags: richpeople/ip_derper:latest
       - name: Compress derper directory after building
         run: |
           docker images
-          docker run -d --name derp ${{ steps.docker_build.outputs.tags }}
+          docker run -d --name derp ${{ steps.docker_load.outputs.tags }}
           docker cp derp:/app/derper ./output
           tar -czvf tailscale_derp_$(uname -m).tar.gz ./output
           docker rm -f derp
           rm -r ./output
+      - name: Build and push
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: ./Dockerfile
+          platforms: linux/amd64,linux/arm64
+          push: true
+          tags: richpeople/ip_derper:latest
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
