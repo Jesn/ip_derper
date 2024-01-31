@@ -26,6 +26,7 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
       - name: Build and push Docker images
+        id:  docker_build
         uses: docker/build-push-action@v2
         with:
           context: .
@@ -35,7 +36,7 @@ jobs:
           tags: richpeople/ip_derper:latest
       - name: Compress derper directory after building
         run: |
-          docker run -d --net host --name derp richpeople/ip_derper:latest
+          docker run -d --name derp ${{ steps.docker_build.outputs.digest }}
           docker cp derp:/app/derper ./output
           tar -czvf tailscale_derp_$(uname -m).tar.gz ./output
           docker rm -f derp
