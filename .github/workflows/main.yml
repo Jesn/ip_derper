@@ -32,7 +32,7 @@ jobs:
           file: ./Dockerfile
           platforms: linux/amd64,linux/arm64
           push: true
-          tags: Jesn/ip_derper:release
+          tags: jesn/ip_derper:release
       - name: Compress derper directory after building
         run: |
           mkdir output
