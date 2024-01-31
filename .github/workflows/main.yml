@@ -35,9 +35,10 @@ jobs:
           tags: richpeople/ip_derper:latest
       - name: Compress derper directory after building
         run: |
-          mkdir output
-          cp -r /app/derper ./output
+          docker run -d --name derp ${{steps.docker_build.outputs.digest}}
+          docker cp derp:/app/derper ./output
           tar -czvf tailscale_derp_$(uname -m).tar.gz ./output
+          docker rm -f derp
           rm -r ./output
       - name: Create Release
         id: create_release
