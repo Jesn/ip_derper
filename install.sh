@@ -30,10 +30,10 @@ bash /usr/local/bin/tailscale-derp/build_cert.sh 127.0.0.1 /usr/local/bin/tailsc
 /usr/local/bin/tailscale-derp/derper --hostname=127.0.0.1 \
      --certmode=manual \
      --certdir=/usr/local/bin/tailscale-derp/certs \
-     --stun-port=58157 \
+     --stun-port=58160 \
      --stun=true  \
-     --a=:58155 \
-     --http-port=58156 \
+     --a=:58161 \
+     --http-port=58162 \
      --verify-clients=false
 ' >/usr/local/bin/tailscale-derp/startup.sh
 chmod +x /usr/local/bin/tailscale-derp/startup.sh
