@@ -13,9 +13,9 @@ bash <(curl -Ls https://raw.githubusercontent.com/Jesn/ip_derper/main/uninstall-
 ## Docker部署
 ```
 docker run --restart always \
-  --name derper -p 12345:12345 -p 3478:3478/udp \
+  --name derper -p 58161:58161 -p 58160:58160/udp \
   -e STUN_PORT=58160 \
-  -e DERP_ADDR=58161 \
+  -e DERP_ADDR=:58161 \
   -e DERP_HTTP_PORT=58162 \
   -e DERP_STUN=true \
   -e DERP_VERIFY_CLIENTS=false \
