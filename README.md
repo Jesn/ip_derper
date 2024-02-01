@@ -1,6 +1,15 @@
 
+## 一键启动
+```
+bash <(curl -Ls https://raw.githubusercontent.com/Jesn/ip_derper/main/install-derper.sh)
+```
 
-## 启动Derp
+## 一键删除
+```
+bash <(curl -Ls https://raw.githubusercontent.com/Jesn/ip_derper/main/uninstall-derper.sh)
+```
+
+## 启动Derp命令
 
 ``` bash
 bash ./build_cert.sh 127.0.0.1 ./certs ./san.conf && \
@@ -36,3 +45,9 @@ bash ./build_cert.sh 127.0.0.1 ./certs ./san.conf && \
 	]
 }
 ```
+
+
+![image](https://github.com/Jesn/ip_derper/assets/5728274/e9150aaa-6980-4855-9f3c-6b46d70fe0ad)
+
+![image](https://github.com/Jesn/ip_derper/assets/5728274/120338ea-15e2-4712-a940-bc9e86c783ba)
+
