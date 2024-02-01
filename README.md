@@ -1,3 +1,4 @@
+# tailscale ip derper 部署,支持amd和arm架构
 
 ## 一键启动
 ```
@@ -7,6 +8,18 @@ bash <(curl -Ls https://raw.githubusercontent.com/Jesn/ip_derper/main/install-de
 ## 一键删除
 ```
 bash <(curl -Ls https://raw.githubusercontent.com/Jesn/ip_derper/main/uninstall-derper.sh)
+```
+
+## Docker部署
+```
+docker run --restart always \
+  --name derper -p 12345:12345 -p 3478:3478/udp \
+  -e STUN_PORT=58160 \
+  -e DERP_ADDR=58161 \
+  -e DERP_HTTP_PORT=58162 \
+  -e DERP_STUN=true \
+  -e DERP_VERIFY_CLIENTS=false \
+  -d richpeople/ip_derper:latest
 ```
 
 ## 启动Derp命令
