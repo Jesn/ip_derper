@@ -7,15 +7,15 @@ bash ./build_cert.sh 127.0.0.1 ./certs ./san.conf && \
      ./derper --hostname=127.0.0.1 \
      --certmode=manual \
      --certdir=./certs \
-     --stun-port=58157 \
+     --stun-port=58160 \
      --stun=true  \
-     --a=:58155 \
-     --http-port=58156 \
+     --a=:58161 \
+     --http-port=58162 \
      --verify-clients=false
 ```
 
 ## 防火墙开放端口
-开放一下端口 `58157` `58155` `58156`
+开放一下端口 `58160` `58161` `58162`
 
 ## tailscale acl 添加配置
 ``` 
