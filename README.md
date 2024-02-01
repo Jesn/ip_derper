@@ -28,8 +28,8 @@ bash ./build_cert.sh 127.0.0.1 ./certs ./san.conf && \
 			"Name":             "rk01-derp",
 			"RegionID":         904,
 			"HostName":         "换成你的公网IP或者域名",
-			"stunport":         58157,
-			"derpport":         58155,
+			"stunport":         58160,
+			"derpport":         58161,
 			"stunonly":         false,
 			"InsecureForTests": true,
 		}
